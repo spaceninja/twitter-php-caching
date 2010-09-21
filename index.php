@@ -1,4 +1,3 @@
-<?php include('twitter-caching.php'); ?>
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -21,6 +20,8 @@
 <body> 
 
 <?php
+  require_once('twitter-caching.inc');
+  
   $usernames = "vosechu spaceninja";
   $limit = "10"; // Number of tweets to pull in
   parse_cache_feed( $usernames, $limit );
