@@ -2,7 +2,6 @@
 /*
 	Relative Time Function
 	based on code from http://stackoverflow.com/questions/11/how-do-i-calculate-relative-time/501415#501415
-	For use in the "Parse Twitter Feeds" code below
 */
 define("SECOND", 1);
 define("MINUTE", 60 * SECOND);

@@ -7,6 +7,7 @@ require_once('relative-time.inc');
   based on code from http://spookyismy.name/old-entries/2009/1/25/latest-twitter-update-with-phprss-part-three.html
   and cache code from http://snipplr.com/view/8156/twitter-cache/
   and other cache code from http://wiki.kientran.com/doku.php?id=projects:twitterbadge
+  then rewritten and improved by Chuck Vose (@vosechu) and Scott Vandehey (@spaceninja)
 */
 function parse_cache_feed($usernames, $limit = 5, $display_handle = FALSE, $cache_dir = NULL) {
   // Generate an array based on a comma or space seperated list
