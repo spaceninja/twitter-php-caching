@@ -22,9 +22,15 @@
 <?php
   require_once('twitter-caching.inc');
   
-  $usernames = "vosechu spaceninja";
-  $limit = "10"; // Number of tweets to pull in
-  parse_cache_feed( $usernames, $limit );
+  parse_cache_feed("spaceninja");
+  
+  // $usernames = "vosechu spaceninja"; // Space delimited list of handles
+  // $limit = "10"; // Number of tweets to pull in
+  // $display_username = TRUE; // Uses display name instead of the @handle
+  // // File cache directory location
+  // // Must be writable by your webserver
+  // $cache_dir = '/tmp/'; // Absolute path to cache directory. Include trailing slash.
+  // parse_cache_feed($usernames, $limit, $display_username, $cache_dir);
 ?>
 
 </body> 

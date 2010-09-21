@@ -8,8 +8,7 @@ require_once('relative-time.inc');
   and cache code from http://snipplr.com/view/8156/twitter-cache/
   and other cache code from http://wiki.kientran.com/doku.php?id=projects:twitterbadge
 */
-function parse_cache_feed($usernames, $limit, $display_handle = FALSE) {
-  // TODO: Allow people to specify the cache directory path
+function parse_cache_feed($usernames, $limit = 5, $display_handle = FALSE, $cache_dir = NULL) {
   // Generate an array based on a comma or space seperated list
   $users = explode(" ", $usernames);
   
@@ -17,15 +16,18 @@ function parse_cache_feed($usernames, $limit, $display_handle = FALSE) {
   $username_for_feed = implode('+OR+from%3A', $users);
   $feed = "http://search.twitter.com/search.atom?q=from%3A" . $username_for_feed . "&rpp=" . $limit;
   
+  // TODO: Allow people to not have a slash at the end
   // Build the file path for the file cache
   $usernames_for_file = str_replace(" ", "-", $usernames);
-  $cache_dir = dirname(__FILE__).'/cache/';
+  if (!$cache_dir) {
+    $cache_dir = dirname(__FILE__) . '/cache/';
+  }
   $cache_file = $cache_dir . $usernames_for_file . '-twitter-cache';
   
   // Check for directory existence and directory permissions
   if (!file_exists($cache_dir)) {
     if(!mkdir($cache_dir)){
-      trigger_error("Cache director cannot be created.", E_USER_WARNING);
+      trigger_error("Cache directory cannot be created.", E_USER_WARNING);
     }
   }
   if (!is_writable($cache_dir)) {
@@ -60,6 +62,7 @@ function parse_cache_feed($usernames, $limit, $display_handle = FALSE) {
   // TODO: Find a way to fix errors without @. Does this need doing?
   // read from the cache file even if we got new results from the feed
   $rss = @unserialize(file_get_contents($cache_file));
+  // TODO: Catch errors on SimpleXMLElement
   $xml = new SimpleXMLElement($rss);
 
   if (count($xml->entry) > 0) { // are there any tweets?
