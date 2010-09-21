@@ -113,6 +113,7 @@ function parse_cache_feed($usernames, $limit) {
 					<p class="tweet">
 						<?php echo $clean_content[0]; ?>
 						<br /><small>
+						  <a href="http://twitter.com/<?php echo $clean_lower_user; ?>">@<?php echo $clean_lower_user; ?></a>
 							<?php echo $pretty_time; ?>
 						</small>
 					</p>
